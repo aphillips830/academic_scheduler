@@ -2,8 +2,6 @@ package com.aphillips.academicscheduler.database;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
 import com.aphillips.academicscheduler.dao.AssessmentDAO;
 import com.aphillips.academicscheduler.dao.CourseDAO;
 import com.aphillips.academicscheduler.dao.TermDAO;
@@ -20,9 +18,15 @@ public class AcademicRepository {
     private TermDAO mTermDAO;
     private CourseDAO mCourseDAO;
     private AssessmentDAO mAssessmentDAO;
-    private LiveData<List<Term>> mAllTerms;
-    private LiveData<List<Course>> mAllCourses;
-    private LiveData<List<Assessment>> mAllAssessments;
+    private List<Term> mAllTerms;
+    private List<Course> mAllCourses;
+    private List<Assessment> mAllAssessments;
+    private List<Course> mTermCourses;
+    private List<Assessment> mCourseAssessments;
+
+    private static int NUMBER_OF_THREADS = 4;
+    static final ExecutorService executorService =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public AcademicRepository(Application application) {
         AcademicDatabase academicDatabase = AcademicDatabase.getDatabase(application);
@@ -31,113 +35,134 @@ public class AcademicRepository {
         mAssessmentDAO = academicDatabase.assessmentDAO();
     }
 
-    public LiveData<List<Term>> getTerms() {
-        return mTermDAO.get_all_terms();
+    public List<Term> getAllTerms() {
+        executorService.execute(() -> mAllTerms = mTermDAO.get_all_terms());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllTerms;
     }
 
-    public LiveData<List<Course>> getAllCourses() {
-        return mCourseDAO.get_all_courses();
+    public List<Course> getAllCourses() {
+        executorService.execute(() -> mAllCourses = mCourseDAO.get_all_courses());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllCourses;
     }
 
-    public LiveData<List<Course>> getTermCourses(int termId) {
-        return mCourseDAO.get_term_courses(termId);
+    public List<Course> getTermCourses(int termId) {
+        executorService.execute(() -> mTermCourses = mCourseDAO.get_term_courses(termId));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mTermCourses;
     }
 
-    public LiveData<List<Assessment>> getAssessments() {
-        return mAssessmentDAO.get_all_assessments();
+    public List<Assessment> getAssessments() {
+        executorService.execute(() -> mAllAssessments = mAssessmentDAO.get_all_assessments());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllAssessments;
     }
 
-    public LiveData<List<Assessment>> getCourseAssessments(int courseId) {
-        return mAssessmentDAO.get_course_assessments(courseId);
+    public List<Assessment> getCourseAssessments(int courseId) {
+        executorService.execute(() -> mCourseAssessments = mAssessmentDAO.get_course_assessments(courseId));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mCourseAssessments;
     }
 
     public void insert(Term term) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mTermDAO.insert(term);
-            }
-        });
+        executorService.execute(() -> mTermDAO.insert(term));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(Term term) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mTermDAO.update(term);
-            }
-        });
+        executorService.execute(() -> mTermDAO.update(term));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Term term) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mTermDAO.delete(term);
-            }
-        });
+        executorService.execute(() -> mTermDAO.delete(term));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void insert(Course course) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mCourseDAO.insert(course);
-            }
-        });
+        executorService.execute(() -> mCourseDAO.insert(course));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(Course course) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mCourseDAO.update(course);
-            }
-        });
+        executorService.execute(() -> mCourseDAO.update(course));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Course course) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mCourseDAO.delete(course);
-            }
-        });
+        executorService.execute(() -> mCourseDAO.delete(course));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void insert(Assessment assessment) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mAssessmentDAO.insert(assessment);
-            }
-        });
+        executorService.execute(() -> mAssessmentDAO.insert(assessment));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(Assessment assessment) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mAssessmentDAO.update(assessment);
-            }
-        });
+        executorService.execute(() -> mAssessmentDAO.update(assessment));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Assessment assessment) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mAssessmentDAO.delete(assessment);
-            }
-        });
+        executorService.execute(() -> mAssessmentDAO.delete(assessment));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

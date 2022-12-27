@@ -23,12 +23,17 @@ public abstract class AcademicDatabase extends RoomDatabase {
 
     private static volatile AcademicDatabase INSTANCE;
 
-    public static synchronized AcademicDatabase getDatabase(Context context) {
+    static AcademicDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                    AcademicDatabase.class, "academic_database")
-                    .fallbackToDestructiveMigration()
-                    .build();
+            synchronized (AcademicDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            AcademicDatabase.class,
+                            "academic_database")
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
+            }
         }
         return INSTANCE;
     }

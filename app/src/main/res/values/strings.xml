@@ -3,4 +3,10 @@
     <string name="academic_scheduler">Academic Scheduler</string>
     <string name="calender">calender</string>
     <string name="enter_button">ENTER</string>
+    <string name="terms">TERMS</string>
+    <string name="courses">COURSES</string>
+    <string name="assessments">ASSESSMENTS</string>
+    <string name="sample_text">Sample Text</string>
+    <string name="no_terms">No Terms Entered</string>
+    <string name="no_date">MM-DD-YY</string>
 </resources>

@@ -8,9 +8,6 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
-
-
 @Entity(tableName = "assessment_table", foreignKeys = @ForeignKey(entity = Course.class,
         parentColumns = "course_id", childColumns = "course_id", onDelete = CASCADE))
 public class Assessment {
@@ -26,10 +23,10 @@ public class Assessment {
     private String assessment_name;
 
     @ColumnInfo(name = "assessment_start_date")
-    private Date assessment_start_date;
+    private int assessment_start_date;
 
     @ColumnInfo(name = "assessment_end_date")
-    private Date assessment_end_date;
+    private int assessment_end_date;
 
     @ColumnInfo(name = "course_id")
     private int course_id;
@@ -39,7 +36,7 @@ public class Assessment {
     }
 
     public Assessment(int assessment_id, String assessment_type, String assessment_name,
-                      Date assessment_start_date, Date assessment_end_date, int course_id) {
+                      int assessment_start_date, int assessment_end_date, int course_id) {
         this.assessment_id = assessment_id;
         this.assessment_type = assessment_type;
         this.assessment_name = assessment_name;
@@ -72,19 +69,19 @@ public class Assessment {
         this.assessment_name = assessment_name;
     }
 
-    public Date getAssessment_start_date() {
+    public int getAssessment_start_date() {
         return assessment_start_date;
     }
 
-    public void setAssessment_start_date(Date assessment_start_date) {
+    public void setAssessment_start_date(int assessment_start_date) {
         this.assessment_start_date = assessment_start_date;
     }
 
-    public Date getAssessment_end_date() {
+    public int getAssessment_end_date() {
         return assessment_end_date;
     }
 
-    public void setAssessment_end_date(Date assessment_end_date) {
+    public void setAssessment_end_date(int assessment_end_date) {
         this.assessment_end_date = assessment_end_date;
     }
 

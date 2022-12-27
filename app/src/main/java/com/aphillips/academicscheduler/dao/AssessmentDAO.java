@@ -1,6 +1,5 @@
 package com.aphillips.academicscheduler.dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -25,9 +24,9 @@ public interface AssessmentDAO {
     void delete(Assessment assessment);
 
     @Query("SELECT * FROM assessment_table ORDER BY assessment_start_date ASC")
-    LiveData<List<Assessment>> get_all_assessments();
+    List<Assessment> get_all_assessments();
 
     @Query("SELECT * FROM assessment_table WHERE " +
             "assessment_id == :course ORDER BY assessment_start_date ASC")
-    LiveData<List<Assessment>> get_course_assessments(int course);
+    List<Assessment> get_course_assessments(int course);
 }

@@ -2,7 +2,9 @@ package com.aphillips.academicscheduler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -15,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Hide the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         // Startup screen animation
         Button title_button = findViewById(R.id.enter_button);
         TextView title_textview = findViewById(R.id.title_textview);
@@ -24,5 +31,13 @@ public class MainActivity extends AppCompatActivity {
                 .loadAnimation(this, R.anim.animate_title);
         title_button.setAnimation(animate_title_button);
         title_textview.setAnimation(animate_title);
+
+        title_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Home.class);
+                startActivity(intent);
+            }
+        });
     }
 }
