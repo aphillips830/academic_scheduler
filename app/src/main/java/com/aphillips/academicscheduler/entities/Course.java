@@ -20,10 +20,10 @@ public class Course {
     private String course_name;
 
     @ColumnInfo(name = "course_start_date")
-    private int course_start_date;
+    private String course_start_date;
 
     @ColumnInfo(name = "course_end_date")
-    private int course_end_date;
+    private String course_end_date;
 
     @ColumnInfo(name = "course_status")
     private String course_status;
@@ -47,8 +47,8 @@ public class Course {
     public Course () {
     }
 
-    public Course(int course_id, String course_name, int course_start_date,
-                  int course_end_date, String course_status, String instructor_name,
+    public Course(int course_id, String course_name, String course_start_date,
+                  String course_end_date, String course_status, String instructor_name,
                   String instructor_phone, String instructor_email, String course_note,
                   int term_id) {
         this.course_id = course_id;
@@ -79,19 +79,19 @@ public class Course {
         this.course_name = course_name;
     }
 
-    public int getCourse_start_date() {
+    public String getCourse_start_date() {
         return course_start_date;
     }
 
-    public void setCourse_start_date(int course_start_date) {
+    public void setCourse_start_date(String course_start_date) {
         this.course_start_date = course_start_date;
     }
 
-    public int getCourse_end_date() {
+    public String getCourse_end_date() {
         return course_end_date;
     }
 
-    public void setCourse_end_date(int course_end_date) {
+    public void setCourse_end_date(String course_end_date) {
         this.course_end_date = course_end_date;
     }
 

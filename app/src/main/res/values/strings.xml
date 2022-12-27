@@ -9,4 +9,9 @@
     <string name="sample_text">Sample Text</string>
     <string name="no_terms">No Terms Entered</string>
     <string name="no_date">MM-DD-YY</string>
+    <string name="add_term">Add Term</string>
+    <string name="new_term">New Term</string>
+    <string name="name">Name:</string>
+    <string name="end_date">End date:</string>
+    <string name="start_date">Start date:</string>
 </resources>

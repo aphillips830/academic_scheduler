@@ -1,5 +1,6 @@
 package com.aphillips.academicscheduler;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,11 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     @Override
     public int getItemCount() {
         return mTermsList.size();
+    }
+
+    public void setTermsList(List<Term> terms) {
+        mTermsList = terms;
+        notifyDataSetChanged();
     }
 
     static class TermViewHolder extends RecyclerView.ViewHolder {
