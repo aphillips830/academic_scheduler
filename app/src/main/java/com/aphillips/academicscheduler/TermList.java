@@ -52,12 +52,14 @@ public class TermList extends AppCompatActivity {
         });
     }
 
+    // Add new term via an alertdialog
     private void addTerm() {
 
         LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
         View view = layoutInflater.inflate(R.layout.add_term_layout, null);
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(TermList.this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(TermList.this,
+                R.style.MyDialogTheme);
         dialogBuilder.setView(view);
 
         TextView termTitle = view.findViewById(R.id.add_edit_textview);
@@ -83,6 +85,7 @@ public class TermList extends AppCompatActivity {
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
 
+        // Display a calendar to get term start date
         termStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +106,7 @@ public class TermList extends AppCompatActivity {
             }
         });
 
+        // Display a calendar to get term end date
         termEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +127,7 @@ public class TermList extends AppCompatActivity {
             }
         });
 
+        // Check for empty fields and add new term to database
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 .setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,10 +4,16 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gunmetal</item>
         <item name="colorPrimaryDark">@color/black_rich</item>
-        <item name="colorOnPrimary">@color/gunmetal</item>
+        <item name="colorOnPrimary">@color/almond</item>
         <item name="colorAccent">@color/blue_gray</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="MyDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="colorAccent">@color/almond</item>
+        <item name="android:textColor">@color/almond</item>
+        <item name="android:textColorPrimary">@color/almond</item>
     </style>
 </resources>
