@@ -13,10 +13,19 @@
         android:theme="@style/Theme.AcademicScheduler"
         tools:targetApi="31">
         <activity
+            android:name=".TermDetails"
+            android:exported="false"
+            android:label="Term Details"
+            android:parentActivityName=".TermList">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AssessmentList"
             android:exported="false"
-            android:parentActivityName=".Home"
-            android:label="All Assessments">
+            android:label="All Assessments"
+            android:parentActivityName=".Home">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -24,8 +33,8 @@
         <activity
             android:name=".CourseList"
             android:exported="false"
-            android:parentActivityName=".Home"
-            android:label="All Courses">
+            android:label="All Courses"
+            android:parentActivityName=".Home">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -33,8 +42,8 @@
         <activity
             android:name=".TermList"
             android:exported="false"
-            android:parentActivityName=".Home"
-            android:label="All Terms">
+            android:label="All Terms"
+            android:parentActivityName=".Home">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

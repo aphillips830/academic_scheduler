@@ -1,6 +1,7 @@
 package com.aphillips.academicscheduler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         notifyDataSetChanged();
     }
 
-    static class TermViewHolder extends RecyclerView.ViewHolder {
+    class TermViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView termName;
         private final TextView termStart;
@@ -69,7 +70,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             item_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO
+                    int position = getAdapterPosition();
+                    final Term current = mTermsList.get(position);
+                    Intent intent = new Intent(mContext, TermDetails.class);
+                    intent.putExtra("id", current.getTerm_id());
+                    intent.putExtra("name", current.getTerm_name());
+                    intent.putExtra("start", current.getTerm_start_date());
+                    intent.putExtra("end", current.getTerm_end_date());
+                    mContext.startActivity(intent);
                 }
             });
         }

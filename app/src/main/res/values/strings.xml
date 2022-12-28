@@ -14,4 +14,5 @@
     <string name="name">Name:</string>
     <string name="end_date">End date:</string>
     <string name="start_date">Start date:</string>
+    <string name="add_course">add course</string>
 </resources>
