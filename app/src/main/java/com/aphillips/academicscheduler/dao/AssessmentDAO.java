@@ -23,10 +23,10 @@ public interface AssessmentDAO {
     @Delete
     void delete(Assessment assessment);
 
-    @Query("SELECT * FROM assessment_table ORDER BY assessment_start_date ASC")
+    @Query("SELECT * FROM assessment_table ORDER BY assessment_id ASC")
     List<Assessment> get_all_assessments();
 
     @Query("SELECT * FROM assessment_table WHERE " +
-            "assessment_id == :course ORDER BY assessment_start_date ASC")
+            "course_id == :course ORDER BY assessment_id ASC")
     List<Assessment> get_course_assessments(int course);
 }

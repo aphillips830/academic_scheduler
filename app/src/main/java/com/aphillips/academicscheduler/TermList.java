@@ -67,7 +67,7 @@ public class TermList extends AppCompatActivity {
         final EditText termStart = view.findViewById(R.id.term_start_edittext);
         final EditText termEnd = view.findViewById(R.id.term_end_edittext);
 
-        termTitle.setText("Add New Term");
+        termTitle.setText(R.string.add_new_term);
 
         dialogBuilder.setCancelable(false).setPositiveButton
                 ("Save", new DialogInterface.OnClickListener() {

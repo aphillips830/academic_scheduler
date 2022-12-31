@@ -11,7 +11,6 @@ import com.aphillips.academicscheduler.database.AcademicRepository;
 
 public class CourseList extends AppCompatActivity {
 
-    private AcademicRepository academicRepository;
     CourseAdapter courseAdapter;
     RecyclerView recyclerView;
 
@@ -21,7 +20,7 @@ public class CourseList extends AppCompatActivity {
         setContentView(R.layout.activity_course_list);
 
         // Display all courses
-        academicRepository = new AcademicRepository(getApplication());
+        AcademicRepository academicRepository = new AcademicRepository(getApplication());
         recyclerView = findViewById(R.id.course_recyclerView);
         courseAdapter = new CourseAdapter(this, academicRepository.getAllCourses());
         recyclerView.setItemAnimator(new DefaultItemAnimator());

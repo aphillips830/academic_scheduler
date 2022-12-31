@@ -1,6 +1,7 @@
 package com.aphillips.academicscheduler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         Course current = mCourseList.get(position);
         holder.courseName.setText(current.getCourse_name());
-        holder.courseTerm.setText(current.getTerm_id());
+        holder.courseStatus.setText(current.getCourse_status());
     }
 
     @Override
@@ -48,19 +49,30 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         notifyDataSetChanged();
     }
 
-
-    static class CourseViewHolder extends RecyclerView.ViewHolder {
+    class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseName;
-        private final TextView courseTerm;
+        private final TextView courseStatus;
 
         private CourseViewHolder(View itemView) {
             super(itemView);
             this.courseName = itemView.findViewById(R.id.course_name_textview);
-            this.courseTerm = itemView.findViewById(R.id.course_term_textview);
+            this.courseStatus = itemView.findViewById(R.id.course_status_textview);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO
+                    int position = getAdapterPosition();
+                    final Course current = mCourseList.get(position);
+                    Intent intent = new Intent(mContext, CourseDetails.class);
+                    intent.putExtra("id", current.getCourse_id());
+                    intent.putExtra("name", current.getCourse_name());
+                    intent.putExtra("start", current.getCourse_start_date());
+                    intent.putExtra("end", current.getCourse_end_date());
+                    intent.putExtra("status", current.getCourse_status());
+                    intent.putExtra("instructor", current.getInstructor_name());
+                    intent.putExtra("phone", current.getInstructor_phone());
+                    intent.putExtra("email", current.getInstructor_email());
+                    intent.putExtra("notes", current.getCourse_note());
+                    mContext.startActivity(intent);
                 }
             });
 

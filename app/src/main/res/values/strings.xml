@@ -15,4 +15,24 @@
     <string name="end_date">End date:</string>
     <string name="start_date">Start date:</string>
     <string name="add_course">add course</string>
+    <string name="new_course">New Course</string>
+    <string name="course_name">Course name</string>
+    <string name="status">Status:</string>
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="dropped">Dropped</string>
+    <string name="plan_to_take">Plan to Take</string>
+    <string name="course_start_date">Course start date</string>
+    <string name="course_end_date">Course end date</string>
+    <string name="instructor_name">Instructor name:</string>
+    <string name="instructor_phone">Instructor phone:</string>
+    <string name="instructor_email">Instructor email:</string>
+    <string name="tap_to_add_notes">Tap to add notes</string>
+    <string name="notes">Notes</string>
+    <string name="instructor">Instructor</string>
+    <string name="add_new_course">Add New Course</string>
+    <string name="add_new_term">Add New Term</string>
+    <string name="performance">Performance</string>
+    <string name="objective">Objective</string>
+    <string name="add_new_assessment">Add New Assessment</string>
 </resources>

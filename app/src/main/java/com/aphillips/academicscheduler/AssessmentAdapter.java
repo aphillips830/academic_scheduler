@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aphillips.academicscheduler.entities.Assessment;
+import com.aphillips.academicscheduler.entities.Course;
 
 import java.util.List;
 
@@ -44,6 +45,11 @@ public class AssessmentAdapter  extends RecyclerView.Adapter<AssessmentAdapter.A
         return mAssessmentList.size();
     }
 
+    public void setAssessmentList(List<Assessment> assessments) {
+        mAssessmentList = assessments;
+        notifyDataSetChanged();
+    }
+
     static class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentName;
         private final TextView assessmentType;
@@ -52,6 +58,12 @@ public class AssessmentAdapter  extends RecyclerView.Adapter<AssessmentAdapter.A
             super(itemView);
             this.assessmentName = itemView.findViewById(R.id.assessment_name_textview);
             this.assessmentType = itemView.findViewById(R.id.assessment_type_textview);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO
+                }
+            });
         }
     }
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/almond">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_assessment_textview"
+        android:text="@string/add_new_assessment"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="10sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black_rich"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:labelFor="@id/assessment_name_edittext"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/assessment_name_edittext"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/performance_type"
+            android:text="@string/performance"
+            android:layout_marginEnd="16dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/objective_type"
+            android:text="@string/objective"
+            android:layout_marginStart="16dp"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/assessment_start_edittext"
+            android:text="@string/start_date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/assessment_start_edittext"
+            android:importantForAutofill="no"
+            android:focusable="false"
+            android:inputType="date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/assessment_end_edittext"
+            android:text="@string/end_date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/assessment_end_edittext"
+            android:importantForAutofill="no"
+            android:focusable="false"
+            android:textSize="20sp"
+            android:inputType="date"
+            android:textColor="@color/black_rich"/>
+
+    </LinearLayout>
+
+</LinearLayout>
