@@ -1,6 +1,7 @@
 package com.aphillips.academicscheduler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,6 @@ public class AssessmentAdapter  extends RecyclerView.Adapter<AssessmentAdapter.A
     public void onBindViewHolder(@NonNull AssessmentViewHolder holder, int position) {
         Assessment current = mAssessmentList.get(position);
         holder.assessmentName.setText(current.getAssessment_name());
-        holder.assessmentType.setText(current.getAssessment_type());
     }
 
     @Override
@@ -50,18 +50,25 @@ public class AssessmentAdapter  extends RecyclerView.Adapter<AssessmentAdapter.A
         notifyDataSetChanged();
     }
 
-    static class AssessmentViewHolder extends RecyclerView.ViewHolder {
+    class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentName;
-        private final TextView assessmentType;
 
         private AssessmentViewHolder(View itemView) {
             super(itemView);
             this.assessmentName = itemView.findViewById(R.id.assessment_name_textview);
-            this.assessmentType = itemView.findViewById(R.id.assessment_type_textview);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO
+                    int position = getAdapterPosition();
+                    final Assessment current = mAssessmentList.get(position);
+                    Intent intent = new Intent(mContext, AssessmentDetails.class);
+                    intent.putExtra("id", current.getAssessment_id());
+                    intent.putExtra("name", current.getAssessment_name());
+                    intent.putExtra("type", current.getAssessment_type());
+                    intent.putExtra("start", current.getAssessment_start_date());
+                    intent.putExtra("end", current.getAssessment_end_date());
+                    intent.putExtra("courseId", current.getCourse_id());
+                    mContext.startActivity(intent);
                 }
             });
         }

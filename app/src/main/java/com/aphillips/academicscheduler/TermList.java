@@ -53,7 +53,7 @@ public class TermList extends AppCompatActivity {
     }
 
     // Add new term via an alertdialog
-    private void addTerm() {
+    public void addTerm() {
 
         LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
         View view = layoutInflater.inflate(R.layout.add_term_layout, null);

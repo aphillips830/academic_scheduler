@@ -11,16 +11,31 @@
         android:id="@+id/term_name_detail_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:paddingTop="20dp"
         android:fontFamily="serif"
+        android:background="@color/blue_gray"
+        android:paddingBottom="20dp"
         android:gravity="center"
         android:text="@string/sample_text"
-        android:textColor="@color/black_rich"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/start_date_header"
+        android:textColor="@color/black_rich"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_name_detail_textview" />
 
 
     <TextView
@@ -28,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@string/sample_text"
         android:textColor="@color/black_rich"
         android:textSize="16sp"
@@ -36,10 +51,23 @@
         app:layout_constraintTop_toBottomOf="@+id/term_name_detail_textview" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/end_date_header"
+        android:textColor="@color/black_rich"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_name_detail_textview" />
+
+    <TextView
         android:id="@+id/term_end_detail_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
         android:text="@string/sample_text"
         android:textColor="@color/black_rich"

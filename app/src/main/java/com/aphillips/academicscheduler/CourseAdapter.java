@@ -36,7 +36,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         Course current = mCourseList.get(position);
         holder.courseName.setText(current.getCourse_name());
-        holder.courseStatus.setText(current.getCourse_status());
     }
 
     @Override
@@ -51,12 +50,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseName;
-        private final TextView courseStatus;
 
         private CourseViewHolder(View itemView) {
             super(itemView);
             this.courseName = itemView.findViewById(R.id.course_name_textview);
-            this.courseStatus = itemView.findViewById(R.id.course_status_textview);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -72,6 +69,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("phone", current.getInstructor_phone());
                     intent.putExtra("email", current.getInstructor_email());
                     intent.putExtra("notes", current.getCourse_note());
+                    intent.putExtra("termId", current.getTerm_id());
                     mContext.startActivity(intent);
                 }
             });

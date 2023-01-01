@@ -11,7 +11,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 
 import com.aphillips.academicscheduler.database.AcademicRepository;
 import com.aphillips.academicscheduler.entities.Assessment;
+import com.aphillips.academicscheduler.entities.Course;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -35,9 +39,11 @@ public class CourseDetails extends AppCompatActivity {
     TextView instructorPhone;
     TextView instructorEmail;
     TextView courseNotes;
+    int termId;
     int courseId;
     AcademicRepository academicRepository;
     AssessmentAdapter assessmentAdapter;
+    Button notesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,7 @@ public class CourseDetails extends AppCompatActivity {
         setContentView(R.layout.activity_course_details);
 
         // Back arrow
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         courseName = findViewById(R.id.course_name_detail_textview);
         courseStart = findViewById(R.id.course_start_detail_textview);
@@ -56,6 +62,8 @@ public class CourseDetails extends AppCompatActivity {
         instructorEmail = findViewById(R.id.instructor_email_textview);
         courseNotes = findViewById(R.id.course_notes_textview);
 
+        notesButton = findViewById(R.id.notes_button);
+
         courseId = getIntent().getIntExtra("id", 0);
         courseName.setText(getIntent().getStringExtra("name"));
         courseStart.setText(getIntent().getStringExtra("start"));
@@ -65,6 +73,13 @@ public class CourseDetails extends AppCompatActivity {
         instructorPhone.setText(getIntent().getStringExtra("phone"));
         instructorEmail.setText(getIntent().getStringExtra("email"));
         courseNotes.setText(getIntent().getStringExtra("notes"));
+        termId = getIntent().getIntExtra("termId", 0);
+
+        Course thisCourse = new Course(courseId, courseName.getText().toString(),
+                courseStart.getText().toString(), courseEnd.getText().toString(),
+                courseStatus.getText().toString(), instructorName.getText().toString(),
+                instructorPhone.getText().toString(), instructorEmail.getText().toString(),
+                courseNotes.getText().toString(), termId);
 
         academicRepository = new AcademicRepository(getApplication());
 
@@ -84,13 +99,83 @@ public class CourseDetails extends AppCompatActivity {
             }
         });
 
+        // Edit notes
+        notesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editNotes(thisCourse);
+            }
+        });
+
     }
 
-    // Back arrow
+    // Action Bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_course_details, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_course:
+                // TODO
+                return true;
+
+            case R.id.delete_course:
+                // TODO
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();;
+        onBackPressed();
         return true;
+    }
+
+    public void editNotes(Course course) {
+
+        LayoutInflater notelayoutInflator = LayoutInflater.from(getApplicationContext());
+        View noteView = notelayoutInflator.inflate(R.layout.add_edit_note_layout, null);
+
+        AlertDialog.Builder noteDialogBuilder = new AlertDialog.Builder(CourseDetails.this, R.style.MyDialogTheme);
+        noteDialogBuilder.setView(noteView);
+
+        final EditText noteEdittext = noteView.findViewById(R.id.edit_notes_edittext);
+        noteEdittext.setText(course.getCourse_note());
+
+        noteDialogBuilder.setCancelable(false).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog noteAlertDialog = noteDialogBuilder.create();
+        noteAlertDialog.show();
+
+        // Save note to database and update note in course details
+        noteAlertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newNote = noteEdittext.getText().toString();
+                course.setCourse_note(newNote);
+                academicRepository.update(course);
+                Toast.makeText(getApplicationContext(), "Notes Updated", Toast.LENGTH_SHORT).show();
+                courseNotes.setText(newNote);
+                noteAlertDialog.dismiss();
+            }
+        });
     }
 
     public void addAssessment() {

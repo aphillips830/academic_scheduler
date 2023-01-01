@@ -29,10 +29,21 @@
     <string name="instructor_email">Instructor email:</string>
     <string name="tap_to_add_notes">Tap to add notes</string>
     <string name="notes">Notes</string>
-    <string name="instructor">Instructor</string>
+    <string name="instructor">INSTRUCTOR</string>
     <string name="add_new_course">Add New Course</string>
     <string name="add_new_term">Add New Term</string>
     <string name="performance">Performance</string>
     <string name="objective">Objective</string>
     <string name="add_new_assessment">Add New Assessment</string>
+    <string name="end_date_header">End Date</string>
+    <string name="start_date_header">Start Date</string>
+    <string name="term_name">Term Name</string>
+    <string name="edit_notes">Edit Notes</string>
+    <string name="notes_here">Notes here</string>
+    <string name="edit_course">Edit Course</string>
+    <string name="delete_course">Delete Course</string>
+    <string name="delete_term">Delete Term</string>
+    <string name="edit_term">Edit Term</string>
+    <string name="edit_assessment">Edit Assessment</string>
+    <string name="delete_assessment">Delete Assessment</string>
 </resources>
