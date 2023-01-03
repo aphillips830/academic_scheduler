@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aphillips.academicscheduler.entities.Assessment;
-import com.aphillips.academicscheduler.entities.Course;
 
 import java.util.List;
 

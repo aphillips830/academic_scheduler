@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -39,6 +38,7 @@ public class TermDetails extends AppCompatActivity {
     int termId;
     AcademicRepository academicRepository;
     CourseAdapter courseAdapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class TermDetails extends AppCompatActivity {
 
         academicRepository = new AcademicRepository(getApplication());
 
-        RecyclerView recyclerView = findViewById(R.id.term_detail_recyclerview);
+        recyclerView = findViewById(R.id.term_detail_recyclerview);
         courseAdapter = new CourseAdapter(this,
                 academicRepository.getTermCourses(termId));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -75,6 +75,12 @@ public class TermDetails extends AppCompatActivity {
                 addCourse();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        courseAdapter.setCoursesList(academicRepository.getTermCourses(termId));
     }
 
     // Action bar
@@ -99,8 +105,7 @@ public class TermDetails extends AppCompatActivity {
                 } else {
                     academicRepository.delete(new Term(termId, termName.getText().toString(),
                             termStart.getText().toString(), termEnd.getText().toString()));
-                    Intent newIntent = new Intent(getApplicationContext(), Home.class);
-                    startActivity(newIntent);
+                    onBackPressed();
                     return true;
                 }
 
@@ -215,7 +220,7 @@ public class TermDetails extends AppCompatActivity {
                     String courseStatus;
                     // get status
                     if (statusInProgress.isChecked()) {
-                        courseStatus = "In Progess";
+                        courseStatus = "In Progress";
                     } else if (statusCompleted.isChecked()) {
                         courseStatus = "Completed";
                     } else if (statusDropped.isChecked()) {

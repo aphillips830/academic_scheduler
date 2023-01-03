@@ -28,4 +28,10 @@ public class AssessmentList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(assessmentAdapter);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        assessmentAdapter.setAssessmentList(academicRepository.getAssessments());
+    }
 }

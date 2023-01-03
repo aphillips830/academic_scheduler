@@ -52,6 +52,12 @@ public class TermList extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        termAdapter.setTermsList(academicRepository.getAllTerms());
+    }
+
     // Add new term via an alertdialog
     public void addTerm() {
 

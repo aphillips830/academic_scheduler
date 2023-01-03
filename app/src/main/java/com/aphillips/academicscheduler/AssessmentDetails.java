@@ -2,9 +2,11 @@ package com.aphillips.academicscheduler;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +24,11 @@ import android.widget.Toast;
 import com.aphillips.academicscheduler.database.AcademicRepository;
 import com.aphillips.academicscheduler.entities.Assessment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Objects;
+import java.util.Date;
+import java.util.Locale;
 
 public class AssessmentDetails extends AppCompatActivity {
 
@@ -75,8 +80,17 @@ public class AssessmentDetails extends AppCompatActivity {
                 academicRepository.delete(new Assessment(assessId, assessType.getText().toString(),
                         assessName.getText().toString(), assessStart.getText().toString(),
                         assessEnd.getText().toString(), courseId));
-                Intent newIntent = new Intent(getApplicationContext(), Home.class);
-                startActivity(newIntent);
+                onBackPressed();
+                return true;
+
+            case R.id.assessment_start_alert:
+                notification(assessStart, "Test time : "
+                        + assessName.getText().toString());
+                return true;
+
+            case R.id.assessment_end_alert:
+                notification(assessEnd, "Ending soon : "
+                        + assessName.getText().toString());
                 return true;
 
             default:
@@ -88,6 +102,30 @@ public class AssessmentDetails extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void notification(TextView time, String notificationText) {
+        String courseNotificationTime = time.getText().toString();
+        Intent startIntent = new Intent(AssessmentDetails.this, MyReceiver.class);
+        startIntent.putExtra("key", notificationText);
+        PendingIntent sender = PendingIntent.getBroadcast(AssessmentDetails.this,
+                ++MainActivity.numAlert, startIntent, PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, parseDate(courseNotificationTime), sender);
+        Toast.makeText(AssessmentDetails.this, "Notification Set",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public Long parseDate(String sDate) {
+        String dateFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+        Date notifyDate = null;
+        try {
+            notifyDate = sdf.parse(sDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return notifyDate.getTime();
     }
 
     public void editTerm() {
@@ -157,10 +195,10 @@ public class AssessmentDetails extends AppCompatActivity {
         editAssessEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar calandar = Calendar.getInstance();
-                int endDay = calandar.get(Calendar.DAY_OF_MONTH);
-                int endMonth = calandar.get(Calendar.MONTH);
-                int endYear = calandar.get(Calendar.YEAR);
+                final Calendar calendar = Calendar.getInstance();
+                int endDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int endMonth = calendar.get(Calendar.MONTH);
+                int endYear = calendar.get(Calendar.YEAR);
 
                 DatePickerDialog picker = new DatePickerDialog(AssessmentDetails.this,
                         new DatePickerDialog.OnDateSetListener() {

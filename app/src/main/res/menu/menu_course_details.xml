@@ -14,4 +14,23 @@
         android:icon="@drawable/delete_asset"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/share_note"
+        android:title="@string/share_notes"
+        android:icon="@drawable/share_asset"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/course_start_alert"
+        android:title="@string/alert_for_start_date"
+        android:icon="@drawable/alert_asset"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/course_end_alert"
+        android:title="@string/alert_for_end_date"
+        android:icon="@drawable/alert_asset"
+        app:showAsAction="never"/>
+
+
 </menu>

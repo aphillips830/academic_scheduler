@@ -13,6 +13,7 @@ public class CourseList extends AppCompatActivity {
 
     CourseAdapter courseAdapter;
     RecyclerView recyclerView;
+    AcademicRepository academicRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +21,17 @@ public class CourseList extends AppCompatActivity {
         setContentView(R.layout.activity_course_list);
 
         // Display all courses
-        AcademicRepository academicRepository = new AcademicRepository(getApplication());
+        academicRepository = new AcademicRepository(getApplication());
         recyclerView = findViewById(R.id.course_recyclerView);
         courseAdapter = new CourseAdapter(this, academicRepository.getAllCourses());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(courseAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        courseAdapter.setCoursesList(academicRepository.getAllCourses());
     }
 }
