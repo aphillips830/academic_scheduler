@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/almond">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_edit_textview"
+        android:text="@string/new_term"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="10sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black_rich"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:labelFor="@id/term_name_edittext"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/term_name_edittext"
+            android:inputType="text"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/term_start_edittext"
+            android:text="@string/start_date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/term_start_edittext"
+            android:focusable="false"
+            android:inputType="date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/term_end_edittext"
+            android:text="@string/end_date"
+            android:textSize="20sp"
+            android:textColor="@color/black_rich"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/term_end_edittext"
+            android:focusable="false"
+            android:textSize="20sp"
+            android:inputType="date"
+            android:textColor="@color/black_rich"/>
+
+    </LinearLayout>
+
+</LinearLayout>
