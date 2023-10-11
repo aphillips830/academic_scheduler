@@ -1,4 +1,3 @@
-# academic_scheduler
 Title: Academic Scheduler  
 Purpose: Mobile Application Development Assessment  
 Author: Allen Phillips  
